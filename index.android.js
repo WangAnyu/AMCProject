@@ -9,25 +9,24 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  Navigator,
 } from 'react-native';
+import HomePage from './View/home';
+
 
 export default class AMCProject extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
-      </View>
+        <Navigator
+        initialRoute={{ title: '主页', component: HomePage }}
+        renderScene={this.renderScene}
+        />
     );
+  }
+
+  renderScene(route, navigator) {
+    return <route.component navigator={navigator}  {...route.passProps} />;
   }
 }
 
